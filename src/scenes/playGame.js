@@ -1,6 +1,7 @@
+/* eslint-disable import/no-cycle */
 import Phaser from 'phaser';
 import gameOptions from '../constants/constants';
-import { game } from '../index';
+import { game } from '../game/game';
 
 export default class playGame extends Phaser.Scene {
   constructor() {
