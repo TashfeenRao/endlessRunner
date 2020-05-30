@@ -5,9 +5,9 @@ import coin from '../assets/coin.png';
 import mountain from '../assets/mountain.png';
 import fire from '../assets/fire.png';
 
-class preloadGame extends Phaser.Scene {
+class PreloadGame extends Phaser.Scene {
   constructor() {
-    super('PreloadGame');
+    super({ key: 'preloadGame' });
   }
 
   preload() {
@@ -77,4 +77,4 @@ class preloadGame extends Phaser.Scene {
   }
 }
 
-export default preloadGame;
+export default PreloadGame;

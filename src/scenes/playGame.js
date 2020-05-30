@@ -1,7 +1,8 @@
+/* eslint-disable max-len */
 /* eslint-disable import/no-cycle */
 import Phaser from 'phaser';
 import gameOptions from '../constants/constants';
-import { game } from '../game/game';
+import game from '../game/game';
 
 export default class playGame extends Phaser.Scene {
   constructor() {
@@ -10,8 +11,18 @@ export default class playGame extends Phaser.Scene {
 
   create() {
     // group with all active mountains.
-    this.mountainGroup = this.add.group();
+    const startGame = () => {
 
+      this.scene.restart();
+    
+    };
+    const startBtn = document.getElementById('startBtn');
+    startBtn.addEventListener('click', startGame);
+
+    var score = 0;
+    var scoreText;
+    this.mountainGroup = this.add.group();
+    scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
     // group with all active platforms.
     this.platformGroup = this.add.group({
 
@@ -96,6 +107,8 @@ export default class playGame extends Phaser.Scene {
 
     // setting collisions between the player and the coin group
     this.physics.add.overlap(this.player, this.coinGroup, function (player, coin) {
+      score += 10;
+      scoreText.setText(`Score: ${score}`);
       this.tweens.add({
         targets: coin,
         y: coin.y - 100,
@@ -106,10 +119,10 @@ export default class playGame extends Phaser.Scene {
         onComplete() {
           this.coinGroup.killAndHide(coin);
           this.coinGroup.remove(coin);
+
         },
       });
     }, null, this);
-
     // setting collisions between the player and the fire group
     this.physics.add.overlap(this.player, this.fireGroup, function (player, fire) {
       this.dying = true;
@@ -235,7 +248,11 @@ export default class playGame extends Phaser.Scene {
   update() {
     // game over
     if (this.player.y > game.config.height) {
-      this.scene.start('PlayGame');
+      // this.scene.start('PlayGame');
+      this.physics.pause();
+      this.dying = true;
+      gameOptions.score = 0;
+      this.add.text(200, 300, 'Game Over', { fontSize: '32px', fill: '#000' });
     }
 
     this.player.x = gameOptions.playerStartPosition;
