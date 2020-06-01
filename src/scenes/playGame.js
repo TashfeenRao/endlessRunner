@@ -3,7 +3,7 @@
 import Phaser from 'phaser';
 import gameOptions from '../constants/constants';
 import game from '../game/game';
-import { postScore } from '../apiHandle/apiHandle'
+import { postScore } from '../apiHandle/apiHandle';
 import listener from '../eventListner/eventListner';
 
 export default class playGame extends Phaser.Scene {
@@ -13,18 +13,18 @@ export default class playGame extends Phaser.Scene {
 
   create() {
     // group with all active mountains.
-    this.scene.stop('PlayGame');
-  this.scene.start('welcome')
-      listener();
+    
+    const condition = listener.takeInput();
+    console.log(condition)
+    if (condition) {
+      this.scene.switch('PlayGame');
+      this.scene.stop('welcome');
+    } else {
+      this.scene.switch('welcome');
+    }
     if (this.dying) {
       postScore(gameOptions.name, gameOptions.score);
-    }
-    const startGame = () => {
-      this.scene.restart();
-    };
-    const startBtn = document.getElementById('startBtn');
-    if (startBtn) {
-      startBtn.addEventListener('click', startGame);
+      
     }
     this.mountainGroup = this.add.group();
     gameOptions.scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
@@ -256,7 +256,7 @@ export default class playGame extends Phaser.Scene {
       this.physics.pause();
       this.dying = true;
       this.add.text(200, 300, 'Game Over', { fontSize: '32px', fill: '#000' });
-      //gameOptions.score = 0;
+      // gameOptions.score = 0;
     }
 
     this.player.x = gameOptions.playerStartPosition;
