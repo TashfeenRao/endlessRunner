@@ -3,6 +3,8 @@
 import Phaser from 'phaser';
 import gameOptions from '../constants/constants';
 import game from '../game/game';
+import { postScore } from '../apiHandle/apiHandle'
+import listener from '../eventListner/eventListner';
 
 export default class playGame extends Phaser.Scene {
   constructor() {
@@ -11,18 +13,21 @@ export default class playGame extends Phaser.Scene {
 
   create() {
     // group with all active mountains.
+    this.scene.stop('PlayGame');
+  this.scene.start('welcome')
+      listener();
+    if (this.dying) {
+      postScore(gameOptions.name, gameOptions.score);
+    }
     const startGame = () => {
-
       this.scene.restart();
-    
     };
     const startBtn = document.getElementById('startBtn');
-    startBtn.addEventListener('click', startGame);
-
-    var score = 0;
-    var scoreText;
+    if (startBtn) {
+      startBtn.addEventListener('click', startGame);
+    }
     this.mountainGroup = this.add.group();
-    scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+    gameOptions.scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
     // group with all active platforms.
     this.platformGroup = this.add.group({
 
@@ -107,8 +112,8 @@ export default class playGame extends Phaser.Scene {
 
     // setting collisions between the player and the coin group
     this.physics.add.overlap(this.player, this.coinGroup, function (player, coin) {
-      score += 10;
-      scoreText.setText(`Score: ${score}`);
+      gameOptions.score += 10;
+      gameOptions.scoreText.setText(`Score: ${gameOptions.score}`);
       this.tweens.add({
         targets: coin,
         y: coin.y - 100,
@@ -119,7 +124,6 @@ export default class playGame extends Phaser.Scene {
         onComplete() {
           this.coinGroup.killAndHide(coin);
           this.coinGroup.remove(coin);
-
         },
       });
     }, null, this);
@@ -251,8 +255,8 @@ export default class playGame extends Phaser.Scene {
       // this.scene.start('PlayGame');
       this.physics.pause();
       this.dying = true;
-      gameOptions.score = 0;
       this.add.text(200, 300, 'Game Over', { fontSize: '32px', fill: '#000' });
+      //gameOptions.score = 0;
     }
 
     this.player.x = gameOptions.playerStartPosition;

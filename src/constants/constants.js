@@ -41,6 +41,7 @@ const gameOptions = {
   firePercent: 25,
   score: 0,
   scoreText: 'nn',
+  name: 'tashfeen',
 };
 
 export default gameOptions;
