@@ -4,9 +4,17 @@ import Welcome from '../scenes/welcome';
 const eventListner = (
   () => {
     let bool = false;
+    const container = document.querySelector('.container');
     const frm = document.getElementById('form');
+    const startBtn = document.getElementById('startBtn');
+    const newGameBtn = document.createElement('button');
     const startGame = () => {
       bool = true;
+      return bool;
+      console.log('ksdkdksjdsjk');
+      // startBtn.style.display = 'none';
+      // newGameBtn.textContent = 'New Game';
+      // container.appendChild(newGameBtn);
     };
     const userName = (e) => {
       e.preventDefault();
@@ -16,14 +24,15 @@ const eventListner = (
       frm.style.display = 'none';
       const obj = new Welcome();
       obj.displayName(gameOptions.name);
-      const startBtn = document.getElementById('startBtn');
-      startBtn.addEventListener('click', startGame);
     };
     const takeInput = () => {
       frm.addEventListener('submit', userName);
       return bool;
     };
-    return { bool, takeInput };
+    const newGame = () => {
+
+    };
+    return { takeInput, startGame, bool };
   })();
 
 export default eventListner;
