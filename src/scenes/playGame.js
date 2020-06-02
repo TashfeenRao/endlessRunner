@@ -2,7 +2,7 @@
 /* eslint-disable import/no-cycle */
 import Phaser from 'phaser';
 import gameOptions from '../constants/constants';
-import game from '../game/game';
+import { game } from '../game/game';
 import { postScore } from '../apiHandle/apiHandle';
 import listener from '../eventListner/eventListner';
 
@@ -16,7 +16,6 @@ export default class playGame extends Phaser.Scene {
     let bool = listener.takeInput();
     if (this.dying) {
       postScore(gameOptions.name, gameOptions.score);
-      
     }
     if (bool) {
       this.scene.switch('PlayGame');

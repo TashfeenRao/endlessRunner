@@ -17,8 +17,5 @@ const gameConfig = {
     default: 'arcade',
   },
 };
-
-const wel = new Welcome();
-const game = new Phaser.Game(gameConfig);
-game.scene.add('welcome', wel);
-export default game;
+let game = new Phaser.Game(gameConfig);
+export { game, gameConfig };

@@ -6,7 +6,6 @@ export default class Welcome extends Phaser.Scene {
   }
 
   create() {
-    
     this.add.text(206, 206, 'Welcome to Endless Runner Game', { fontSize: '32px', fill: '#000' });
   }
 

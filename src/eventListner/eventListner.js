@@ -1,6 +1,6 @@
 import gameOptions from '../constants/constants';
 import Welcome from '../scenes/welcome';
-import game from '../game/game';
+import { getScores } from '../apiHandle/apiHandle';
 
 const eventListner = (
   () => {
@@ -9,13 +9,18 @@ const eventListner = (
     const frm = document.getElementById('form');
     const startBtn = document.getElementById('startBtn');
     const newGameBtn = document.createElement('button');
+    const showScoresBtn = document.getElementById('showScores');
     const newGame = () => {
       newGameBtn.id = 'newGame';
       newGameBtn.textContent = 'New Game';
       container.appendChild(newGameBtn);
       newGameBtn.addEventListener('click', () => {
-        console.log('skdnksndksnndsknkskndsknkn')
-      })
+      });
+    };
+    const showScores = () => {
+      getScores().then((data) => {
+        console.log(data);
+      });
     };
     const startGame = () => {
       bool = true;
@@ -28,12 +33,13 @@ const eventListner = (
       gameOptions.name = name.value;
       name.value = '';
       frm.style.display = 'none';
-      const obj = new Welcome();
       startBtn.addEventListener('click', startGame);
+      const obj = new Welcome();
       obj.displayName(gameOptions.name);
     };
     const takeInput = () => {
       frm.addEventListener('submit', userName);
+      showScoresBtn.addEventListener('click', showScores);
       return bool;
     };
     return {
