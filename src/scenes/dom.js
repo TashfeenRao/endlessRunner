@@ -1,20 +1,22 @@
 const dom = (() => {
-  const displayScore = (data) => {
-    const table = document.createElement('table');
-    const container = document.querySelector('.container');
+  const clearInput = () => {
+    const table = document.getElementById('scoreTable');
     table.innerHTML = '';
+  };
+  const displayScore = (data) => {
+    const table = document.getElementById('scoreTable');
+    const container = document.querySelector('.container');
     data.forEach((row) => {
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
+      const tr = `
             <tr>
             <th>${row.user}</th>
             <th>${row.score}</th>
             <th>Age</th>
-          </tr>
+            <tr>
             `;
-     table.appendChild(tr);
+      table.insertAdjacentHTML('beforeend', tr);
     });
-    container.appendChild(table);
+    clearInput();
   };
   return { displayScore };
 })();
