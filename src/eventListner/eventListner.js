@@ -1,6 +1,7 @@
 import gameOptions from '../constants/constants';
 import Welcome from '../scenes/welcome';
 import { getScores } from '../apiHandle/apiHandle';
+import dom from '../scenes/dom';
 
 const eventListner = (
   () => {
@@ -19,7 +20,12 @@ const eventListner = (
     };
     const showScores = () => {
       getScores().then((data) => {
-        console.log(data);
+        console.log(data)
+        dom.displayScore(data);
+      }).catch((error) => {
+        {
+          alert(error);
+        }
       });
     };
     const startGame = () => {
