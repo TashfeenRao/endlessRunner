@@ -1,5 +1,6 @@
 import gameOptions from '../constants/constants';
 import Welcome from '../scenes/welcome';
+import game from '../game/game';
 
 const eventListner = (
   () => {
@@ -8,13 +9,18 @@ const eventListner = (
     const frm = document.getElementById('form');
     const startBtn = document.getElementById('startBtn');
     const newGameBtn = document.createElement('button');
+    const newGame = () => {
+      newGameBtn.id = 'newGame';
+      newGameBtn.textContent = 'New Game';
+      container.appendChild(newGameBtn);
+      newGameBtn.addEventListener('click', () => {
+        console.log('skdnksndksnndsknkskndsknkn')
+      })
+    };
     const startGame = () => {
       bool = true;
-      return bool;
-      console.log('ksdkdksjdsjk');
-      // startBtn.style.display = 'none';
-      // newGameBtn.textContent = 'New Game';
-      // container.appendChild(newGameBtn);
+      startBtn.textContent = 'Restart';
+      newGame();
     };
     const userName = (e) => {
       e.preventDefault();
@@ -23,16 +29,16 @@ const eventListner = (
       name.value = '';
       frm.style.display = 'none';
       const obj = new Welcome();
+      startBtn.addEventListener('click', startGame);
       obj.displayName(gameOptions.name);
     };
     const takeInput = () => {
       frm.addEventListener('submit', userName);
       return bool;
     };
-    const newGame = () => {
-
+    return {
+      takeInput, startGame, bool, newGame,
     };
-    return { takeInput, startGame, bool };
   })();
 
 export default eventListner;

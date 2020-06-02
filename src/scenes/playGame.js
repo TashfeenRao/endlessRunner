@@ -13,22 +13,23 @@ export default class playGame extends Phaser.Scene {
 
   create() {
     // group with all active mountains.
-    listener.takeInput();
+    let bool = listener.takeInput();
     if (this.dying) {
       postScore(gameOptions.name, gameOptions.score);
+      
     }
+    if (bool) {
+      this.scene.switch('PlayGame');
+      this.scene.stop('welcome');
+    }
+    else {
+      this.scene.switch('welcome');
+    }
+    const reStart = () => {
+      this.scene.restart();
+    };
     const startBtn = document.getElementById('startBtn');
-    if (startBtn) {
-      startBtn.addEventListener('click', listener.startGame);
-      const condition = listener.bool;
-      console.log(condition)
-      if (condition) {
-        this.scene.switch('PlayGame');
-        this.scene.stop('welcome');
-      } else {
-        this.scene.switch('welcome');
-      }
-    }
+    startBtn.addEventListener('click', reStart);
     this.mountainGroup = this.add.group();
     gameOptions.scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
     // group with all active platforms.
