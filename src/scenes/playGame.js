@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 /* eslint-disable max-len */
 /* eslint-disable import/no-cycle */
 import Phaser from 'phaser';
@@ -208,7 +209,6 @@ export default class playGame extends Phaser.Scene {
       platform.active = true;
       platform.visible = true;
       this.platformPool.remove(platform);
-      const newRatio = platformWidth / platform.displayWidth;
       platform.displayWidth = platformWidth;
       platform.tileScaleX = 1 / platform.scaleX;
     } else {
@@ -295,17 +295,20 @@ export default class playGame extends Phaser.Scene {
       if ((!this.dying) && (this.player.body.touching.down || (this.playerJumps > 0 && this.playerJumps < gameOptions.jumps))) {
         this.player.setVelocityY(gameOptions.jumpForce * -1);
         this.playerJumps++;
-  
+
         // stops animation
         this.player.anims.stop();
       }
+    }
+    if (cursors.down.isDown) {
+      this.player.setVelocityY(-gameOptions.jumpForce * -1);
     }
     this.player.x = gameOptions.playerStartPosition;
 
     // recycling platforms
     let minDistance = game.config.width;
     let rightmostPlatformHeight = 0;
-    this.platformGroup.getChildren().forEach(function (platform) {
+    this.platformGroup.getChildren().forEach((platform) => {
       const platformDistance = game.config.width - platform.x - platform.displayWidth / 2;
       if (platformDistance < minDistance) {
         minDistance = platformDistance;
@@ -318,7 +321,7 @@ export default class playGame extends Phaser.Scene {
     }, this);
 
     // recycling coins
-    this.coinGroup.getChildren().forEach(function (coin) {
+    this.coinGroup.getChildren().forEach((coin) => {
       if (coin.x < -coin.displayWidth / 2) {
         this.coinGroup.killAndHide(coin);
         this.coinGroup.remove(coin);
@@ -326,7 +329,7 @@ export default class playGame extends Phaser.Scene {
     }, this);
 
     // recycling fire
-    this.fireGroup.getChildren().forEach(function (fire) {
+    this.fireGroup.getChildren().forEach((fire) => {
       if (fire.x < -fire.displayWidth / 2) {
         this.fireGroup.killAndHide(fire);
         this.fireGroup.remove(fire);
@@ -334,7 +337,7 @@ export default class playGame extends Phaser.Scene {
     }, this);
 
     // recycling mountains
-    this.mountainGroup.getChildren().forEach(function (mountain) {
+    this.mountainGroup.getChildren().forEach((mountain) => {
       if (mountain.x < -mountain.displayWidth) {
         const rightmostMountain = this.getRightmostMountain();
         mountain.x = rightmostMountain + Phaser.Math.Between(100, 350);

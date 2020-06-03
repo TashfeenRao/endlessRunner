@@ -40,7 +40,8 @@
 
 ## About The Project
 
-An endless game of feed the snake where the player controls the snake head and direct it the food. Once the snake feeds it grows in body length. The snake is in constant movement and is able to disappear on one side and appear on the opposite side. The food also appear randomly on the platform. The rule are to make sure that the snake head does not collide with the body which will result to a game over scenerio.
+An endless game Inwhich player will run on never end platform. The goal of is collect stars and increase score.
+You have to avoid fire and do not fall below the platform. User score stored on external api.
 
 ### Built With
 
@@ -65,9 +66,8 @@ This project was Phaser-3.js, a 2D game framework for making HTML5 games for des
 ### How To Play
 
 - Up arrow jump the Player
-
+- Down arrow fall the Player
 - Collect Stars and increase your score
-
 - avoid fall and fire.
 
 
@@ -95,7 +95,7 @@ Copy the following instructions sequentially into your terminal
 
 ## Live Version
 
-- You can view the app hosted online [here](https://tranquil-springs-70646.herokuapp.com/).
+- You can view the app hosted online [here](https://endlessrunner.netlify.app/).
 
 <!-- FUTURE IMPROVEMENTS -->
 
