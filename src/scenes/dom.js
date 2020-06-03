@@ -1,23 +1,23 @@
 const dom = (() => {
+  const table = document.getElementById('trScore');
+  let num = 1;
   const clearInput = () => {
-    const table = document.getElementById('scoreTable');
     table.innerHTML = '';
   };
-  const displayScore = (data) => {
-    const table = document.getElementById('scoreTable');
-    const container = document.querySelector('.container');
-    data.forEach((row) => {
-      const tr = `
-            <tr>
-            <th>${row.user}</th>
-            <th>${row.score}</th>
-            <th>Age</th>
-            <tr>
-            `;
-      table.insertAdjacentHTML('beforeend', tr);
-    });
-    clearInput();
+  const renderScore = (row) => {
+    const tr = `
+    <tr>
+    <th>${num}</th>
+    <th>${row.user}</th>
+    <th>${row.score}</th>
+    <tr>
+    `;
+    table.insertAdjacentHTML('beforeend', tr);
+    num = 1 + num;
   };
-  return { displayScore };
+  const displayScore = (data) => {
+    data.forEach(renderScore);
+  };
+  return { displayScore, clearInput };
 })();
 export default dom;

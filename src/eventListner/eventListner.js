@@ -1,3 +1,5 @@
+/* eslint-disable no-lone-blocks */
+/* eslint-disable no-alert */
 import gameOptions from '../constants/constants';
 import Welcome from '../scenes/welcome';
 import { getScores } from '../apiHandle/apiHandle';
@@ -19,8 +21,8 @@ const eventListner = (
       });
     };
     const showScores = () => {
+      dom.clearInput();
       getScores().then((data) => {
-        console.log(data)
         dom.displayScore(data);
       }).catch((error) => {
         {
