@@ -1,4 +1,4 @@
-# snake-game-js
+# endlessRunner
 
 [![Contributors][contributors-shield]][contributors-url]
 [![Issues][issues-shield]][issues-url]
@@ -9,13 +9,13 @@
   <h2 align="center">Feed the Snake</h2>
   <p align="center">
     <br />
-    <a href="https://github.com/bafiam/snake-game-js"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/tashfeenrao/endlessRunner"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     ·
-    <a href="https://github.com/bafiam/snake-game-js/issues">Report Bug</a>
+    <a href="https://github.com/tashfeenrao/endlessRunner/issues">Report Bug</a>
     ·
-    <a href="https://github.com/bafiam/snake-game-js/issues">Request Feature</a>
+    <a href="https://github.com/tashfeenrao/endlessRunner/issues">Request Feature</a>
   </p>
 </p>
 
@@ -56,35 +56,28 @@ This project was Phaser-3.js, a 2D game framework for making HTML5 games for des
 
 ## Screenshots
 
-### Welcome Scene
-
-![screenshot](screenshots/Welcome.png)
-
-### ScoreBoard Scene
-
-![screenshot](screenshots/ScoreBoard.png)
 
 ### Game Scene
 
-![screenshot](screenshots/Game.png)
+![screenshot](screenshots/demo1.png)
+![screenshot](screenshots/demo2.png)
 
 ### How To Play
 
-- Left arrow moves the snake to the left.
+- Up arrow jump the Player
 
-- Right arrow moves the snake to the right.
+- Collect Stars and increase your score
 
-- Down arrow moves the snake to the down.
+- avoid fall and fire.
 
-- Up arrow moves the snake to the up.
 
 ## Playing Locally
 
 Copy the following instructions sequentially into your terminal
 
-- git clone https://github.com/bafiam/snake-game-js.git
+- git clone https://github.com/tashfeenrao/endlessRunner.git
 
-- cd snake-game-js
+- cd endlessRunner
 
 - Run `npm install`
 
@@ -94,7 +87,7 @@ Copy the following instructions sequentially into your terminal
 
 ## TestingJavascript-Capstone
 
-- cd snake-game-js
+- cd endlessRunner
 
 - Run `npm install`
 
@@ -108,7 +101,7 @@ Copy the following instructions sequentially into your terminal
 
 ## Future Improvements
 
-See the [open issues](https://github.com/bafiam/snake-game-js/issues) for a list of proposed features (and known issues).
+See the [open issues](https://github.com/tashfeenrao/endlessRunner/issues) for a list of proposed features (and known issues).
 
 <!-- LICENSE -->
 
@@ -120,14 +113,14 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 
-Stephen Gumba - [Github profile](https://github.com/bafiam)
+Stephen Gumba - [Github profile](https://github.com/tashfeenrao)
 
-Project Link: [Project repo](https://github.com/bafiam/snake-game-js)
+Project Link: [Project repo](https://github.com/tashfeenrao/endlessRunner)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
 [contributors-shield]: https://img.shields.io/badge/Contributors-1-%2300ff00
-[contributors-url]: https://github.com/bafiam/snake-game-js/graphs/contributors
+[contributors-url]: https://github.com/tashfeenrao/endlessRunner/graphs/contributors
 [issues-shield]: https://img.shields.io/badge/issues-0-%2300ff00
-[issues-url]: https://github.com/bafiam/snake-game-js/issues/
+[issues-url]: https://github.com/tashfeenrao/endlessRunner/issues/
