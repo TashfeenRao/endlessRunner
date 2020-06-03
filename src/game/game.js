@@ -17,5 +17,5 @@ const gameConfig = {
     default: 'arcade',
   },
 };
-let game = new Phaser.Game(gameConfig);
+const game = new Phaser.Game(gameConfig);
 export { game, gameConfig };
