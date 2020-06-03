@@ -13,8 +13,8 @@ export default class playGame extends Phaser.Scene {
 
   create() {
     // group with all active mountains.
-    let bool = listener.takeInput();
-    if (this.dying) {
+    const bool = listener.takeInput();
+    if (this.dying && gameOptions.score > 0) {
       postScore(gameOptions.name, gameOptions.score);
     }
     if (bool) {
@@ -27,6 +27,24 @@ export default class playGame extends Phaser.Scene {
     const reStart = () => {
       this.scene.restart();
     };
+    const newGameStart = () => {
+      this.scene.switch('welcome');
+      this.scene.stop('PlayGame');
+      const frm = document.getElementById('form');
+      const newGameBtn = document.getElementById('newGame');
+      const wel = document.querySelector('.welcome');
+      const startBtn = document.getElementById('startBtn');
+      const RestartBtn = document.getElementById('restartBtn');
+      startBtn.style.display = 'block';
+      RestartBtn.style.display = 'none';
+      wel.style.display = 'none';
+      frm.style.display = 'block';
+      newGameBtn.style.display = 'none';
+    };
+    const newGame = document.getElementById('newGame');
+    if (newGame) {
+      newGame.addEventListener('click', newGameStart);
+    }
     const startBtn = document.getElementById('startBtn');
     startBtn.addEventListener('click', reStart);
     this.mountainGroup = this.add.group();

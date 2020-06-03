@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 import Phaser from 'phaser';
 
 export default class Welcome extends Phaser.Scene {
@@ -10,10 +11,9 @@ export default class Welcome extends Phaser.Scene {
   }
 
   displayName(name) {
-    const h1 = document.createElement('h3');
-    h1.className = 'welName';
-    h1.textContent = `Welcome to The Game ${name}`;
+    const h3 = document.getElementById('h3');
+    h3.textContent = `Welcome to The Game ${name}`;
     const container = document.querySelector('.welcome');
-    container.appendChild(h1);
+    container.appendChild(h3);
   }
 }
