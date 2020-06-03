@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 /* eslint-disable import/prefer-default-export */
 import axios from 'axios';
 
@@ -7,6 +8,7 @@ export const postScore = async (user, score) => {
       user,
       score,
     });
+    return result;
   } catch (error) {
     alert(error);
   }

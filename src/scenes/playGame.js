@@ -5,6 +5,7 @@ import gameOptions from '../constants/constants';
 import { game } from '../game/game';
 import { postScore } from '../apiHandle/apiHandle';
 import listener from '../eventListner/eventListner';
+import { elements } from './domElements';
 
 export default class playGame extends Phaser.Scene {
   constructor() {
@@ -20,33 +21,43 @@ export default class playGame extends Phaser.Scene {
     if (bool) {
       this.scene.switch('PlayGame');
       this.scene.stop('welcome');
-    }
-    else {
+    } else {
       this.scene.switch('welcome');
     }
     const reStart = () => {
       this.scene.restart();
+      if (elements.newGame) {
+        elements.newGame.style.display = 'block';
+        elements.restartBtn.style.display = 'block';
+      }
+      if (elements.restartBtn) {
+        elements.newGame.style.display = 'block';
+        elements.restartBtn.style.display = 'block';
+      }
     };
+    const startGame = () => {
+      this.scene.restart();
+    };
+    const newGame = document.getElementById('newGame');
+    const startBtn = document.getElementById('startBtn');
     const newGameStart = () => {
       this.scene.switch('welcome');
       this.scene.stop('PlayGame');
-      const frm = document.getElementById('form');
-      const newGameBtn = document.getElementById('newGame');
-      const wel = document.querySelector('.welcome');
-      const startBtn = document.getElementById('startBtn');
       const RestartBtn = document.getElementById('restartBtn');
       startBtn.style.display = 'block';
       RestartBtn.style.display = 'none';
-      wel.style.display = 'none';
-      frm.style.display = 'block';
-      newGameBtn.style.display = 'none';
+      elements.welcome.style.display = 'none';
+      elements.form.style.display = 'block';
+      newGame.style.display = 'none';
     };
-    const newGame = document.getElementById('newGame');
     if (newGame) {
       newGame.addEventListener('click', newGameStart);
     }
-    const startBtn = document.getElementById('startBtn');
-    startBtn.addEventListener('click', reStart);
+    startBtn.addEventListener('click', startGame);
+    const restartBtn = document.getElementById('restartBtn');
+    if (restartBtn) {
+      restartBtn.addEventListener('click', reStart);
+    }
     this.mountainGroup = this.add.group();
     gameOptions.scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
     // group with all active platforms.
@@ -119,7 +130,7 @@ export default class playGame extends Phaser.Scene {
     this.player = this.physics.add.sprite(gameOptions.playerStartPosition, game.config.height * 0.7, 'player');
     this.player.setGravityY(gameOptions.playerGravity);
     this.player.setDepth(2);
-
+    this.player.body.CollideWorldBounds = true;
     // the player is not dying
     this.dying = false;
 
@@ -279,7 +290,11 @@ export default class playGame extends Phaser.Scene {
       this.add.text(200, 300, 'Game Over', { fontSize: '32px', fill: '#000' });
       // gameOptions.score = 0;
     }
-
+    const cursors = this.input.keyboard.createCursorKeys();
+    if (cursors.up.isDown) {
+      this.player.setVelocityY(gameOptions.jumpForce * -1);
+      this.playerJumps++;
+    }
     this.player.x = gameOptions.playerStartPosition;
 
     // recycling platforms
