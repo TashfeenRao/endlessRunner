@@ -4,6 +4,7 @@ import gameOptions from '../constants/constants';
 import Welcome from '../scenes/welcome';
 import { getScores } from '../apiHandle/apiHandle';
 import dom from '../scenes/dom';
+import { elements } from '../scenes/domElements';
 
 const eventListner = (
   () => {
@@ -17,7 +18,7 @@ const eventListner = (
     const newGame = () => {
       newGameBtn.id = 'newGame';
       newGameBtn.textContent = 'New Game';
-      container.appendChild(newGameBtn);
+      elements.gameBtnDiv.appendChild(newGameBtn);
     };
     const showScores = () => {
       dom.clearInput();
@@ -33,7 +34,7 @@ const eventListner = (
       bool = true;
       RestartBtn.id = 'restartBtn';
       RestartBtn.textContent = 'Restart';
-      container.appendChild(RestartBtn);
+      elements.gameBtnDiv.appendChild(RestartBtn);
       startBtn.style.display = 'none';
       newGame();
     };

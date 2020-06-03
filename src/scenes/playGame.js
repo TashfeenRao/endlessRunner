@@ -287,13 +287,18 @@ export default class playGame extends Phaser.Scene {
       // this.scene.start('PlayGame');
       this.physics.pause();
       this.dying = true;
-      this.add.text(200, 300, 'Game Over', { fontSize: '32px', fill: '#000' });
+      this.add.text(100, 100, 'Game Over', { fontSize: '32px', fill: '#000' });
       // gameOptions.score = 0;
     }
     const cursors = this.input.keyboard.createCursorKeys();
     if (cursors.up.isDown) {
-      this.player.setVelocityY(gameOptions.jumpForce * -1);
-      this.playerJumps++;
+      if ((!this.dying) && (this.player.body.touching.down || (this.playerJumps > 0 && this.playerJumps < gameOptions.jumps))) {
+        this.player.setVelocityY(gameOptions.jumpForce * -1);
+        this.playerJumps++;
+  
+        // stops animation
+        this.player.anims.stop();
+      }
     }
     this.player.x = gameOptions.playerStartPosition;
 

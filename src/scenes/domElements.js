@@ -6,5 +6,6 @@ export const elements = {
   restartBtn: document.getElementById('restartBtn'),
   newGame: document.getElementById('newGame'),
   form: document.getElementById('form'),
+  gameBtnDiv: document.querySelector('.gameBtnDiv'),
 
 };
