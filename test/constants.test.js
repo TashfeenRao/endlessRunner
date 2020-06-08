@@ -7,7 +7,7 @@ test('it should give Player Gravity', () => {
 
 test('it should give jumpForce', () => {
   const { jumpForce } = gameOptions;
-  expect(jumpForce).toBe(400);
+  expect(jumpForce).toBe(500);
 });
 
 test('it should give updated score text', () => {
