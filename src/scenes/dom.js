@@ -13,7 +13,7 @@ const dom = (() => {
     table.insertAdjacentHTML('beforeend', tr);
   };
   const displayScore = (data) => {
-    data.forEach(renderScore);
+    data.slice(0, 10).forEach(renderScore);
   };
   return { displayScore, clearInput };
 })();
