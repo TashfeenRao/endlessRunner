@@ -7,5 +7,6 @@ export const elements = {
   newGame: document.getElementById('newGame'),
   form: document.getElementById('form'),
   gameBtnDiv: document.querySelector('.gameBtnDiv'),
+  error: document.getElementById('showError'),
 
 };

@@ -9,7 +9,6 @@ import { elements } from '../scenes/domElements';
 const eventListner = (
   () => {
     let bool = false;
-    const container = document.querySelector('.container');
     const frm = document.getElementById('form');
     const startBtn = document.getElementById('startBtn');
     const newGameBtn = document.createElement('button');
@@ -26,7 +25,7 @@ const eventListner = (
         dom.displayScore(data);
       }).catch((error) => {
         {
-          alert(error);
+          elements.error.textContent = error;
         }
       });
     };
