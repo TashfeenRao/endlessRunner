@@ -26,13 +26,13 @@ const gameOptions = {
   playerGravity: 900,
 
   // player jump force
-  jumpForce: 400,
+  jumpForce: 500,
 
   // player starting X position
   playerStartPosition: 200,
 
   // consecutive jumps allowed
-  jumps: 2,
+  jumps: 3,
 
   // % of probability a coin appears on the platform
   coinPercent: 25,

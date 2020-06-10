@@ -4,21 +4,20 @@ import gameOptions from '../constants/constants';
 import Welcome from '../scenes/welcome';
 import { getScores } from '../apiHandle/apiHandle';
 import dom from '../scenes/dom';
+import { elements } from '../scenes/domElements';
 
 const eventListner = (
   () => {
     let bool = false;
-    const container = document.querySelector('.container');
     const frm = document.getElementById('form');
     const startBtn = document.getElementById('startBtn');
     const newGameBtn = document.createElement('button');
+    const RestartBtn = document.createElement('button');
     const showScoresBtn = document.getElementById('showScores');
     const newGame = () => {
       newGameBtn.id = 'newGame';
       newGameBtn.textContent = 'New Game';
-      container.appendChild(newGameBtn);
-      newGameBtn.addEventListener('click', () => {
-      });
+      elements.gameBtnDiv.appendChild(newGameBtn);
     };
     const showScores = () => {
       dom.clearInput();
@@ -26,13 +25,16 @@ const eventListner = (
         dom.displayScore(data);
       }).catch((error) => {
         {
-          alert(error);
+          elements.error.textContent = error;
         }
       });
     };
     const startGame = () => {
       bool = true;
-      startBtn.textContent = 'Restart';
+      RestartBtn.id = 'restartBtn';
+      RestartBtn.textContent = 'Restart';
+      elements.gameBtnDiv.appendChild(RestartBtn);
+      startBtn.style.display = 'none';
       newGame();
     };
     const userName = (e) => {
@@ -41,6 +43,10 @@ const eventListner = (
       gameOptions.name = name.value;
       name.value = '';
       frm.style.display = 'none';
+      const wel = document.querySelector('.welcome');
+      wel.style.display = 'block';
+      const h3 = document.getElementById('h3');
+      h3.innerHTML = '';
       startBtn.addEventListener('click', startGame);
       const obj = new Welcome();
       obj.displayName(gameOptions.name);

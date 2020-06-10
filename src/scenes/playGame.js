@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 /* eslint-disable max-len */
 /* eslint-disable import/no-cycle */
 import Phaser from 'phaser';
@@ -5,6 +6,7 @@ import gameOptions from '../constants/constants';
 import { game } from '../game/game';
 import { postScore } from '../apiHandle/apiHandle';
 import listener from '../eventListner/eventListner';
+import { elements } from './domElements';
 
 export default class playGame extends Phaser.Scene {
   constructor() {
@@ -13,22 +15,50 @@ export default class playGame extends Phaser.Scene {
 
   create() {
     // group with all active mountains.
-    let bool = listener.takeInput();
-    if (this.dying) {
+    const bool = listener.takeInput();
+    if (this.dying && gameOptions.score > 0) {
       postScore(gameOptions.name, gameOptions.score);
     }
     if (bool) {
       this.scene.switch('PlayGame');
       this.scene.stop('welcome');
-    }
-    else {
+    } else {
       this.scene.switch('welcome');
     }
     const reStart = () => {
       this.scene.restart();
+      if (elements.newGame) {
+        elements.newGame.style.display = 'block';
+        elements.restartBtn.style.display = 'block';
+      }
+      if (elements.restartBtn) {
+        elements.newGame.style.display = 'block';
+        elements.restartBtn.style.display = 'block';
+      }
     };
+    const startGame = () => {
+      this.scene.restart();
+    };
+    const newGame = document.getElementById('newGame');
     const startBtn = document.getElementById('startBtn');
-    startBtn.addEventListener('click', reStart);
+    const newGameStart = () => {
+      this.scene.switch('welcome');
+      this.scene.stop('PlayGame');
+      const RestartBtn = document.getElementById('restartBtn');
+      startBtn.style.display = 'block';
+      RestartBtn.style.display = 'none';
+      elements.welcome.style.display = 'none';
+      elements.form.style.display = 'block';
+      newGame.style.display = 'none';
+    };
+    if (newGame) {
+      newGame.addEventListener('click', newGameStart);
+    }
+    startBtn.addEventListener('click', startGame);
+    const restartBtn = document.getElementById('restartBtn');
+    if (restartBtn) {
+      restartBtn.addEventListener('click', reStart);
+    }
     this.mountainGroup = this.add.group();
     gameOptions.scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
     // group with all active platforms.
@@ -101,7 +131,7 @@ export default class playGame extends Phaser.Scene {
     this.player = this.physics.add.sprite(gameOptions.playerStartPosition, game.config.height * 0.7, 'player');
     this.player.setGravityY(gameOptions.playerGravity);
     this.player.setDepth(2);
-
+    this.player.body.CollideWorldBounds = true;
     // the player is not dying
     this.dying = false;
 
@@ -179,7 +209,6 @@ export default class playGame extends Phaser.Scene {
       platform.active = true;
       platform.visible = true;
       this.platformPool.remove(platform);
-      const newRatio = platformWidth / platform.displayWidth;
       platform.displayWidth = platformWidth;
       platform.tileScaleX = 1 / platform.scaleX;
     } else {
@@ -258,16 +287,28 @@ export default class playGame extends Phaser.Scene {
       // this.scene.start('PlayGame');
       this.physics.pause();
       this.dying = true;
-      this.add.text(200, 300, 'Game Over', { fontSize: '32px', fill: '#000' });
+      this.add.text(100, 100, 'Game Over', { fontSize: '32px', fill: '#000' });
       // gameOptions.score = 0;
     }
+    const cursors = this.input.keyboard.createCursorKeys();
+    if (cursors.up.isDown) {
+      if ((!this.dying) && (this.player.body.touching.down || (this.playerJumps > 0 && this.playerJumps < gameOptions.jumps))) {
+        this.player.setVelocityY(gameOptions.jumpForce * -1);
+        this.playerJumps++;
 
+        // stops animation
+        this.player.anims.stop();
+      }
+    }
+    if (cursors.down.isDown) {
+      this.player.setVelocityY(-gameOptions.jumpForce * -1);
+    }
     this.player.x = gameOptions.playerStartPosition;
 
     // recycling platforms
     let minDistance = game.config.width;
     let rightmostPlatformHeight = 0;
-    this.platformGroup.getChildren().forEach(function (platform) {
+    this.platformGroup.getChildren().forEach((platform) => {
       const platformDistance = game.config.width - platform.x - platform.displayWidth / 2;
       if (platformDistance < minDistance) {
         minDistance = platformDistance;
@@ -280,7 +321,7 @@ export default class playGame extends Phaser.Scene {
     }, this);
 
     // recycling coins
-    this.coinGroup.getChildren().forEach(function (coin) {
+    this.coinGroup.getChildren().forEach((coin) => {
       if (coin.x < -coin.displayWidth / 2) {
         this.coinGroup.killAndHide(coin);
         this.coinGroup.remove(coin);
@@ -288,7 +329,7 @@ export default class playGame extends Phaser.Scene {
     }, this);
 
     // recycling fire
-    this.fireGroup.getChildren().forEach(function (fire) {
+    this.fireGroup.getChildren().forEach((fire) => {
       if (fire.x < -fire.displayWidth / 2) {
         this.fireGroup.killAndHide(fire);
         this.fireGroup.remove(fire);
@@ -296,7 +337,7 @@ export default class playGame extends Phaser.Scene {
     }, this);
 
     // recycling mountains
-    this.mountainGroup.getChildren().forEach(function (mountain) {
+    this.mountainGroup.getChildren().forEach((mountain) => {
       if (mountain.x < -mountain.displayWidth) {
         const rightmostMountain = this.getRightmostMountain();
         mountain.x = rightmostMountain + Phaser.Math.Between(100, 350);

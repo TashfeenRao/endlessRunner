@@ -9,7 +9,7 @@ import Welcome from '../scenes/welcome';
 const gameConfig = {
   type: Phaser.AUTO,
   width: 834,
-  height: 750,
+  height: 650,
   backgroundColor: 0x0c88c7,
   scene: [PreloadGame, PlayGame, Welcome],
   // physics settings
@@ -17,5 +17,5 @@ const gameConfig = {
     default: 'arcade',
   },
 };
-let game = new Phaser.Game(gameConfig);
+const game = new Phaser.Game(gameConfig);
 export { game, gameConfig };
