@@ -1,47 +1,25 @@
-# endlessRunner
+<h1 align="center">
+  <br>
+    Endless Runner
+  <br>
+</h1>
 
-[![Contributors][contributors-shield]][contributors-url]
-[![Issues][issues-shield]][issues-url]
-<br />
+<h4 align="center">This project is a platform game built using a phaser web gaming framework and pure javascript. An endless game in which a player will run on never end platform. The goal is to collect as many stars as possible for increasing scores. The Player has to avoid fire and does not fall below the platform. User score stored on external API.
+</h4>
+</br>
 
-<p align="center">
- 
-  <h2 align="center">Feed the Snake</h2>
-  <p align="center">
-    <br />
-    <a href="https://github.com/tashfeenrao/endlessRunner"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    ·
-    <a href="https://github.com/tashfeenrao/endlessRunner/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/tashfeenrao/endlessRunner/issues">Request Feature</a>
-  </p>
-</p>
+![Contributors](https://img.shields.io/badge/Contributor-Tashfeen-green)
+![build](https://img.shields.io/badge/build-passing-green)
+![NPM](https://img.shields.io/badge/NPM-14.01-green)
+![npm bundle size](https://img.shields.io/bundlephobia/min/react?color=green)
+![Version](https://img.shields.io/badge/version-1.0.0-green)
+![Hackage-Deps](https://img.shields.io/hackage-deps/v/json)
+![Issues](https://img.shields.io/badge/issues-0-green)
+![Twitter Follow](https://img.shields.io/twitter/follow/TashfeenDev?label=Tashfeen&style=social)
 
-<!-- TABLE OF CONTENTS -->
+</br>
 
-## Table of Contents
 
-- [About the Project](#about-the-project)
-  - [Built With](#built-with)
-  - [Prerequisites](#prerequisites)
-- [Credit](#credit)
-- [Screenshots](#screenshots)
-- [How To Play](#how-to-play)
-- [Playing Locally](#playing-locally)
-- [Testing](#testing)
-- [Live Version](#live-version)
-- [Future Improvements](#future-improvements)
-- [License](#license)
-- [Contact](#contact)
-
-<!-- ABOUT THE PROJECT -->
-
-## About The Project
-
-An endless game Inwhich player will run on never end platform. The goal of is collect stars and increase score.
-You have to avoid fire and do not fall below the platform. User score stored on external api.
 
 ### Built With
 
@@ -55,7 +33,9 @@ This project was Phaser-3.js, a 2D game framework for making HTML5 games for des
 - Webpack
 - Jest
 
-## Screenshots
+## Live Version
+
+- You can view the app hosted online [here](https://endlessrunner.netlify.app/).
 
 
 ### Game Scene
@@ -93,9 +73,6 @@ Copy the following instructions sequentially into your terminal
 
 - Run `npm run test`to run the test suites
 
-## Live Version
-
-- You can view the app hosted online [here](https://endlessrunner.netlify.app/).
 
 <!-- FUTURE IMPROVEMENTS -->
 
@@ -107,20 +84,18 @@ See the [open issues](https://github.com/tashfeenrao/endlessRunner/issues) for a
 
 ## License
 
-Distributed under the MIT License. See `LICENSE` for more information.
+MIT
 
 <!-- CONTACT -->
 
-## Contact
-
-Stephen Gumba - [Github profile](https://github.com/tashfeenrao)
-
-Project Link: [Project repo](https://github.com/tashfeenrao/endlessRunner)
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-
-[contributors-shield]: https://img.shields.io/badge/Contributors-1-%2300ff00
-[contributors-url]: https://github.com/tashfeenrao/endlessRunner/graphs/contributors
-[issues-shield]: https://img.shields.io/badge/issues-0-%2300ff00
-[issues-url]: https://github.com/tashfeenrao/endlessRunner/issues/
+## Author
+---
+[Tashfeen Rao](https://tashfeenrao.github.io/personal-portfolio/) &nbsp;&middot;&nbsp;
+</br>
+Email: tashfeendev@gmail.com &nbsp;&middot;&nbsp;
+</br>
+AngelList [TashfeenRao](https://angel.co/u/tashfeen-rao) &nbsp;&middot;&nbsp;
+</br>
+LinkedIn [Tashfeen Rao](https://www.linkedin.com/in/tashfeen-rao/) &nbsp;&middot;&nbsp;
+</br>
+Twitter [@TashfeenDev](https://twitter.com/TashfeenDev) &nbsp;&middot;&nbsp;
